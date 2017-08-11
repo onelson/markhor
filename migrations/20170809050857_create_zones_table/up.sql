@@ -1,1 +1,4 @@
--- Your SQL goes here
+CREATE TABLE zones(
+  id INTEGER PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL
+);

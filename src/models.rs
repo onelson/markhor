@@ -16,6 +16,11 @@ pub struct Collectible {
     name: String,
     description: Option<String>,
     category: u32,
-    zones: Vec<u32>,
     got_it: bool
+}
+
+#[derive(Debug, Queryable)]
+pub struct CollectibleZoneMembership {
+    collectible_id: u32,
+    zone_list: String
 }
