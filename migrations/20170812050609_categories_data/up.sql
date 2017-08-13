@@ -1,10 +1,10 @@
 INSERT INTO categories (id, name) VALUES
   (1, "Snakes"),
-  (2, "Birds"),
-  (3, "Medical Plants"),
-  (4, "Frogs"),
-  (5, "Fish"),
-  (6, "Mushrooms"),
-  (7, "Fruit"),
-  (8, "Misc")
+  (2, "Mushrooms"),
+  (3, "Frogs"),
+  (4, "Birds"),
+  (5, "Fishes"),
+  (6, "Fruits"),
+  (7, "Miscellaneous"),
+  (8, "Medi Plants")
 ;
