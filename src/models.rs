@@ -22,5 +22,5 @@ pub struct Collectible {
 #[derive(Debug, Queryable)]
 pub struct CollectibleZoneMembership {
     collectible_id: u32,
-    zone_list: String
+    zone_id: u32
 }

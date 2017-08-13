@@ -1,4 +1,5 @@
 CREATE TABLE zones(
   id INTEGER PRIMARY KEY,
-  name TEXT UNIQUE NOT NULL
+  name TEXT UNIQUE NOT NULL,
+  description TEXT NOT NULL
 );
