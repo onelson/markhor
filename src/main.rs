@@ -12,24 +12,35 @@ extern crate r2d2;
 extern crate r2d2_diesel;
 extern crate rocket;
 
-mod db;
-mod models;
-mod schema;
-use std::env;
+extern crate rocket_contrib;
+extern crate serde;
+
+extern crate serde_json;
+#[macro_use]
+extern crate serde_derive;
 
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+mod schema {
+    infer_schema!("dotenv:DATABASE_URL");
 }
 
+mod db;
+mod models;
+use std::env;
+use rocket_contrib::Json;
+use diesel::result::QueryResult;
+use diesel::prelude::*;
 
-//#[get("/tasks")]
-//fn get_tasks(conn: DbConn) -> QueryResult<Json<Vec<Task>>> {
-//    all_tasks.order(tasks::id.desc())
-//        .load::<Task>(&conn)
-//        .map(|tasks| Json(tasks))
-//}
+
+
+#[get("/zones")]
+fn get_zones(conn_: db::Conn) -> QueryResult<Json<Vec<models::Zone>>> {
+    use schema::zones::dsl::*;
+    let ref conn = *conn_;
+    zones
+        .order(name.desc())
+        .load::<models::Zone>(conn).map(|xs| Json(xs))
+}
 
 
 fn main() {
@@ -39,6 +50,6 @@ fn main() {
     debug!("using db url: {}", database_url);
     rocket::ignite()
         .manage(db::init_pool(&database_url))
-        .mount("/", routes![index])
+        .mount("/", routes![get_zones])
         .launch();
 }

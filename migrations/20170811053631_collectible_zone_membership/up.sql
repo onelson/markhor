@@ -3,5 +3,5 @@ CREATE TABLE collectible_zone_membership (
   zone_id INTEGER NOT NULL,
   FOREIGN KEY(collectible_id) REFERENCES collectibles(id),
   FOREIGN KEY(zone_id) REFERENCES zones(id),
-  UNIQUE (collectible_id, zone_id)
+  PRIMARY KEY (collectible_id, zone_id)
 );
