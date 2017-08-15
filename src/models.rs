@@ -20,7 +20,7 @@ pub struct Collectible {
     name: String,
     description: Option<String>,
     category: i32,
-    got_it: bool,
+    collected: bool,
 }
 
 #[derive(Debug, Serialize, Queryable)]

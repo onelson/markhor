@@ -1,4 +1,4 @@
-INSERT INTO collectibles (id, name, description, category, got_it) VALUES
+INSERT INTO collectibles (id, name, description, category, collected) VALUES
   (1, "Snake A", "King Cobra", 1, 0),
   (2, "Snake B", "Taiwanese Cobra", 1, 0),
   (3, "Snake C", "Thai Cobra", 1, 0),
