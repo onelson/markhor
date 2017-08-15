@@ -6,18 +6,19 @@ use r2d2_diesel::ConnectionManager;
 
 use rocket::http::Status;
 use rocket::request::{self, FromRequest};
-use rocket::{Request, State, Outcome};
+use rocket::{Outcome, Request, State};
 
 pub type Pool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
 pub fn init_pool(database_url: &str) -> Pool {
     let config = r2d2::Config::default();
-    let manager =
-        ConnectionManager::<SqliteConnection>::new(database_url);
+    let manager = ConnectionManager::<SqliteConnection>::new(database_url);
     r2d2::Pool::new(config, manager).expect("db pool")
 }
 
-pub struct Conn(pub r2d2::PooledConnection<ConnectionManager<SqliteConnection>>);
+pub struct Conn(
+    pub r2d2::PooledConnection<ConnectionManager<SqliteConnection>>,
+);
 
 impl Deref for Conn {
     type Target = SqliteConnection;
@@ -35,7 +36,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for Conn {
         let pool = request.guard::<State<Pool>>()?;
         match pool.get() {
             Ok(conn) => Outcome::Success(Conn(conn)),
-            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ()))
+            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
         }
     }
 }

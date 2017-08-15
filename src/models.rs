@@ -20,12 +20,12 @@ pub struct Collectible {
     name: String,
     description: Option<String>,
     category: i32,
-    got_it: bool
+    got_it: bool,
 }
 
 #[derive(Debug, Serialize, Queryable)]
 #[serde(rename_all = "camelCase")]
 pub struct CollectibleZoneMembership {
     collectible_id: i32,
-    zone_id: i32
+    zone_id: i32,
 }
