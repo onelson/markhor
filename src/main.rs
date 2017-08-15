@@ -34,6 +34,7 @@ mod api {
     use rocket_contrib::Json;
     use diesel::result::QueryResult;
     use diesel::prelude::*;
+    use diesel;
     use db;
     use models;
 
@@ -78,6 +79,19 @@ mod api {
             .load::<models::CollectibleZoneMembership>(conn)
             .map(|xs| Json(xs))
     }
+
+    #[put("/collectibles/<id_>/collected/<collected_>")]
+    pub fn update_collectible_collected(id_: i32, collected_: bool, conn_: db::Conn) -> QueryResult<Json<models::Collectible>> {
+        use schema::collectibles::dsl::*;
+        let ref conn = *conn_;
+
+        let _ = diesel::update(collectibles.find(id_))
+            .set(collected.eq(collected_))
+            .execute(conn);
+
+        collectibles.find(id_).get_result::<models::Collectible>(conn)
+            .map(|x| Json(x))
+    }
 }
 
 
@@ -94,7 +108,8 @@ fn main() {
                 api::get_zones,
                 api::get_categories,
                 api::get_collectibles,
-                api::get_memberships
+                api::get_memberships,
+                api::update_collectible_collected
             ],
         )
         .launch();
