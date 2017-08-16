@@ -20,16 +20,14 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
+mod db;
+mod models;
+use std::env;
 
 mod schema {
     infer_schema!("dotenv:DATABASE_URL");
 }
 
-mod db;
-mod models;
-
-
-use std::env;
 mod api {
     use rocket_contrib::Json;
     use diesel::result::QueryResult;
@@ -42,10 +40,7 @@ mod api {
     pub fn get_zones(conn_: db::Conn) -> QueryResult<Json<Vec<models::Zone>>> {
         use schema::zones::dsl::*;
         let ref conn = *conn_;
-        zones
-            .order(name.asc())
-            .load::<models::Zone>(conn)
-            .map(|xs| Json(xs))
+        zones.load::<models::Zone>(conn).map(|xs| Json(xs))
     }
 
 
@@ -85,15 +80,14 @@ mod api {
         use schema::collectibles::dsl::*;
         let ref conn = *conn_;
 
-        let _ = diesel::update(collectibles.find(id_))
+        diesel::update(collectibles.find(id_))
             .set(collected.eq(collected_))
-            .execute(conn);
+            .execute(conn).expect("unable to update");
 
         collectibles.find(id_).get_result::<models::Collectible>(conn)
             .map(|x| Json(x))
     }
 }
-
 
 fn main() {
     dotenv::dotenv().ok();
