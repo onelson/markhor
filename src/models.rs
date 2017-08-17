@@ -18,6 +18,7 @@ pub struct Category {
 pub struct Collectible {
     id: i32,
     name: String,
+    short_name: Option<String>,
     description: Option<String>,
     category: i32,
     collected: bool,
