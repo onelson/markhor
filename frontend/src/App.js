@@ -4,10 +4,16 @@ import './App.css';
 
 import configureStore from './store/configureStore';
 import initialState from './initialState';
+import { ActionCreators } from './actions';
 
 const store = configureStore(initialState);
 
 class App extends Component {
+
+  componentDidMount() {
+      store.dispatch(ActionCreators.fetchAllData());
+  }
+  
   render() {
     return (
       <Provider store={store}>

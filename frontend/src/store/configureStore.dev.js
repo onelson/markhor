@@ -5,8 +5,12 @@ import enhancer from './enhancer';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
-    return createStore(rootReducer, composeWithDevTools(
-        enhancer,
+    return createStore(
+        rootReducer,
+        initialState,
+        composeWithDevTools(
+            enhancer,
         // other store enhancers if any
-    ));
+        )
+    );
 }
