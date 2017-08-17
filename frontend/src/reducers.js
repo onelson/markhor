@@ -4,6 +4,14 @@ import * as Immutable from 'immutable';
 import initialState from './initialState';
 import { ActionTypes } from './actions';
 
+function activeZone(state=initialState.activeZone, action) {
+    switch(action.type) {
+        case ActionTypes.ACTIVE_ZONE_UPDATE:
+            return action.zoneId;
+        default:
+            return state;
+    }
+}
 
 function categories(state=initialState.categories, action) {
     switch (action.type) {
@@ -61,6 +69,7 @@ function zones(state=initialState.zones, action) {
 }
 
 export default combineReducers({
+    activeZone,
     zones,
     collectibles,
     membership,

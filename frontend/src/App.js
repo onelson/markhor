@@ -5,6 +5,8 @@ import './App.css';
 import configureStore from './store/configureStore';
 import initialState from './initialState';
 import { ActionCreators } from './actions';
+import ZonePicker from './ZonePicker';
+import CollectibleList from './CollectibleList';
 
 const store = configureStore(initialState);
 
@@ -17,9 +19,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          Hello World!!!!
-        </div>
+          <div>
+              <ZonePicker/>
+              <CollectibleList/>
+          </div>
       </Provider>
     );
   }

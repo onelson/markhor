@@ -1,4 +1,16 @@
-
 body {
   font-size: 24px;
+}
+
+.zone-picker {
+  list-style: none;
+}
+
+.zone-picker .item {
+  cursor: pointer;
+}
+
+.item.active {
+  background: goldenrod;
+  color: whitesmoke;
 }

@@ -5,6 +5,7 @@ import * as Immutable from 'immutable';
 // convenient place to set defaults, but it also shows us the
 // general layout of the data.
 export default {
+    activeZone: null,
     zones: Immutable.Map(),
     collectibles: Immutable.Map(),
     membership: {
