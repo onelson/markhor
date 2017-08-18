@@ -2,20 +2,24 @@ body {
   font-size: 24px;
   background-color: lightseagreen;
   user-select: none;
+}
+
+.collectible-list,
+.zone-picker {
+  list-style: none;
+  margin: 0;
   padding: 0.5rem;
 }
 
-.zone-picker {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.zone-picker .item {
+.item {
   cursor: pointer;
 }
 
 .item.active {
   background: goldenrod;
   color: whitesmoke;
+}
+
+.app {
+  display: flex;
 }

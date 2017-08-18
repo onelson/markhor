@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-          <div>
+          <div className="app">
               <ZonePicker/>
               <CollectibleList/>
           </div>
