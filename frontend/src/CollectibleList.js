@@ -33,7 +33,7 @@ function CollectibleList(props) {
     let activeItems;
 
     if (props.activeZone === null) {
-        activeItems = props.collectibles.valueSeq();
+        activeItems = props.collectibles.keySeq();
     }
     else {
         activeItems = props.membership.itemsByZone.get(props.activeZone) || Immutable.List();
@@ -45,7 +45,7 @@ function CollectibleList(props) {
 
     const groups = props.categories
         .valueSeq()
-        .sortBy(x => x.name)
+        .sortBy(x => x.name)  // TODO: downsort groups that are 100% complete!
         .map(category => <CollectibleGroup
             key={category.id}
             activeItems={activeItems}

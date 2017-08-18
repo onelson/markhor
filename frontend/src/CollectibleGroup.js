@@ -10,6 +10,7 @@ CollectibleGroup.propTypes = {
 };
 
 
+// TODO: add local state to control collapsed state.
 export default function CollectibleGroup(props) {
 
     let items = null;
@@ -18,7 +19,10 @@ export default function CollectibleGroup(props) {
         items = props.items
             .sortBy(x => x.name)
             .map(item => {
-            const className = classNames('item', { inactive: props.activeItems.includes(item.id)});
+            const className = classNames(
+                    'item',
+                    { inactive: !props.activeItems.includes(item.id)}
+                );
             return (
                 <li key={item.id}
                     className={className}>
