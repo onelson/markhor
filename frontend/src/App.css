@@ -1,9 +1,14 @@
 body {
   font-size: 24px;
+  background-color: lightseagreen;
+  user-select: none;
+  padding: 0.5rem;
 }
 
 .zone-picker {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .zone-picker .item {
