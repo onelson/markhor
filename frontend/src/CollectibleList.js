@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 
+import CollectibleGroup from './CollectibleGroup';
+
 CollectibleList.propTypes = {
     activeZone: PropTypes.number,
     collectibles: PropTypes.object.isRequired,
     categories: PropTypes.object.isRequired,
+    dataLoadComplete: PropTypes.bool.isRequired,
     membership: PropTypes.object.isRequired
 
 };
@@ -14,6 +17,7 @@ CollectibleList.propTypes = {
 function mapStateToProps(state) {
     return {
         activeZone: state.activeZone,
+        dataLoadComplete: state.dataLoadComplete,
         collectibles: state.collectibles,
         categories: state.categories,
         membership: state.membership
@@ -21,32 +25,35 @@ function mapStateToProps(state) {
 }
 
 function CollectibleList(props) {
-    let items = Immutable.List();
+
+    if (!props.dataLoadComplete) {
+        return null;
+    }
+
+    let activeItems;
 
     if (props.activeZone === null) {
-        items = props.collectibles.valueSeq();
-    }
-    else if (props.membership.itemsByZone.has(props.activeZone)) {
-        const validIds = props.membership.itemsByZone.get(props.activeZone);
-        items = props
-            .collectibles
-            .valueSeq()
-            .filter(x => validIds.includes(x.id)).toList();
-    }
-
-    if (items.size > 0) {
-        items = items
-            .sortBy(x => [x.category, x.name])
-            .map(item => <li key={item.id} className="item">{item.name}</li>);
+        activeItems = props.collectibles.valueSeq();
     }
     else {
-        items = <li>No items found in this zone.</li>;
+        activeItems = props.membership.itemsByZone.get(props.activeZone) || Immutable.List();
     }
 
-    return (
-        <ul className="collectible-list">
-            {items}
-        </ul>);
+    const itemsByCategory = props.collectibles
+        .valueSeq()
+        .groupBy(x => x.category);
+
+    const groups = props.categories
+        .valueSeq()
+        .sortBy(x => x.name)
+        .map(category => <CollectibleGroup
+            key={category.id}
+            activeItems={activeItems}
+            label={category.name}
+            items={itemsByCategory.get(category.id)}/>
+        );
+
+    return (<div className="collectibles">{groups}</div>);
 }
 
 export default connect(mapStateToProps)(CollectibleList);

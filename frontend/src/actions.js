@@ -6,6 +6,8 @@ export const ActionTypes = keyMirror({
     // `KEY: null,`
     ACTIVE_ZONE_UPDATE: null,
 
+    DATA_LOAD_COMPLETE: null,
+
     CATEGORIES_FETCH_SUCCESS: null,
     CATEGORIES_FETCH_FAIL: null,
 
@@ -87,11 +89,12 @@ function fetchZones() {
 function fetchAllData() {
     return (dispatch) => {
         return Promise.all([
-            fetchCategories(),
-            fetchCollectibles(),
-            fetchMembership(),
-            fetchZones(),
-        ].map(dispatch));
+                fetchCategories(),
+                fetchCollectibles(),
+                fetchMembership(),
+                fetchZones(),
+            ].map(dispatch)
+        ).then(() => dispatch({ type: ActionTypes.DATA_LOAD_COMPLETE }));
     }
 }
 

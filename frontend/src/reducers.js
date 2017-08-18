@@ -13,6 +13,15 @@ function activeZone(state=initialState.activeZone, action) {
     }
 }
 
+function dataLoadComplete(state=initialState.dataLoadComplete, action) {
+    switch(action.type) {
+        case ActionTypes.DATA_LOAD_COMPLETE:
+            return true;
+        default:
+            return state;
+    }
+}
+
 function categories(state=initialState.categories, action) {
     switch (action.type) {
         case ActionTypes.CATEGORIES_FETCH_SUCCESS:
@@ -70,6 +79,7 @@ function zones(state=initialState.zones, action) {
 
 export default combineReducers({
     activeZone,
+    dataLoadComplete,
     zones,
     collectibles,
     membership,

@@ -6,6 +6,7 @@ import * as Immutable from 'immutable';
 // general layout of the data.
 export default {
     activeZone: null,
+    dataLoadComplete: false,
     zones: Immutable.Map(),
     collectibles: Immutable.Map(),
     membership: {

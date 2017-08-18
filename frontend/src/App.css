@@ -20,6 +20,17 @@ body {
   color: whitesmoke;
 }
 
+.item.inactive {
+  opacity: 0.3;
+}
+
 .app {
   display: flex;
+}
+
+.collectibles h4 {
+  margin: 0.5rem 0.25rem 0;
+  padding: 0.1rem;
+  background: darkmagenta;
+  color: azure;
 }
