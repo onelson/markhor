@@ -48,8 +48,6 @@ function CollectibleList(props) {
         activeItems = props.membership.itemsByZone.get(props.activeZone) || Immutable.List();
     }
 
-    // activeItems = activeItems.toJS();
-
     const itemsByCategory = props.collectibles
         .valueSeq()
         .groupBy(x => x.category);
