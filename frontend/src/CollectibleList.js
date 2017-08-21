@@ -61,13 +61,17 @@ function CollectibleList(props) {
 
     const groups = props.categories
         .valueSeq()
-        .sortBy(x => x.name)  // TODO: downsort groups that are 100% complete!
-        .map(category =>
+        .map(category => [category, itemsByCategory.get(category.id)])
+        .sortBy(([ category, items ]) => {
+
+            return [ !items.some(x => !x.collected), category.name ];
+        })
+        .map(([ category, items ]) =>
             <CollectibleGroup
                 key={category.id}
                 activeItems={activeItems}
                 label={category.name}
-                items={itemsByCategory.get(category.id)}
+                items={items}
                 onItemToggle={handleItemToggle}
             />
         );
