@@ -38,6 +38,8 @@ function collectibles(state=initialState.collectibles, action) {
             return Immutable.Map(action.data.map(x => [x.id, x]));
         case ActionTypes.COLLECTIBLES_FETCH_FAIL:
             return Immutable.Map();
+        case ActionTypes.COLLECTIBLE_UPDATE_COLLECTED_SUCCESS:
+            return state.set(action.data.id, action.data);
         default:
             return state;
     }

@@ -33,6 +33,27 @@ function updateActiveZone(zoneId) {
     return { type: ActionTypes.ACTIVE_ZONE_UPDATE, zoneId };
 }
 
+function updateCollectible(collectibleId, value) {
+    return (dispatch) => {
+        return fetch(
+            `/api/collectibles/${collectibleId}/collected/${value}`,
+            { method: 'PUT' }
+            ).then(
+                resp => resp.json(),
+                err => {
+                    console.error(err);
+                    return dispatch({
+                        type: ActionTypes.COLLECTIBLE_UPDATE_COLLECTED_FAIL,
+                        reason: err
+                    });
+                }
+        ).then( data => dispatch({
+            type: ActionTypes.COLLECTIBLE_UPDATE_COLLECTED_SUCCESS,
+            data
+        }));
+    };
+}
+
 function fetchCategories() {
     return (dispatch) => {
         return fetch('/api/categories').then(
@@ -101,6 +122,7 @@ function fetchAllData() {
 
 export const ActionCreators = {
     updateActiveZone,
+    updateCollectible,
     fetchAllData,
     fetchCategories,
     fetchCollectibles,
