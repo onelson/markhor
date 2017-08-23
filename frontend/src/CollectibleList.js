@@ -27,12 +27,6 @@ function mapStateToProps(state) {
 }
 
 
-function getItemDetails(event) {
-    const id = parseInt(event.target.dataset.itemId, 10);
-    const value = event.target.checked;
-    return { id, value };
-}
-
 function CollectibleList(props) {
 
     if (!props.dataLoadComplete) {
@@ -52,9 +46,8 @@ function CollectibleList(props) {
         .valueSeq()
         .groupBy(x => x.category);
 
-    const handleItemToggle = (event) => {
-        const { id, value } = getItemDetails(event);
-        props.updateCollectible(id, value);
+    const handleItemToggle = (item) => {
+        props.updateCollectible(item.id, !item.collected);
     };
 
     const groups = props.categories

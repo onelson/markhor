@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Checkbox from 'semantic-ui-react/dist/commonjs/modules/Checkbox';
 
 
 CollectibleItem.propTypes = {
@@ -18,15 +19,10 @@ export default function CollectibleItem(props) {
 
     return (
         <li className={className}>
-            <label htmlFor={`item-${props.item.id}`}>
-                {props.item.name}
-                <input id={`item-${props.item.id}`}
-                       type="checkbox"
-                       checked={props.item.collected}
-                       data-item-id={props.item.id}
-                       onChange={props.onToggle}
-                />
-            </label>
+            <Checkbox label={props.item.name}
+                      toggle
+                      checked={props.item.collected}
+                      onChange={() => props.onToggle(props.item)}/>
         </li>);
 
 }
