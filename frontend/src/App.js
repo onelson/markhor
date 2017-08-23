@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Provider from 'react-redux/es/components/Provider';
-import './App.css';
 
 import configureStore from './store/configureStore';
 import initialState from './initialState';
