@@ -79,11 +79,25 @@ function zones(state=initialState.zones, action) {
     }
 }
 
+function view(state=initialState.view, action) {
+    switch(action.type) {
+        case ActionTypes.VIEW_TAB_UPDATED:
+            return { ...state, tab: action.index };
+        case ActionTypes.VIEW_ZONE_UPDATED:
+            return { ...state, zone: action.index };
+        case ActionTypes.VIEW_COLLECTIBLE_UPDATED:
+            return { ...state, collectible: action.index };
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     activeZone,
     dataLoadComplete,
     zones,
     collectibles,
     membership,
-    categories
+    categories,
+    view
 });

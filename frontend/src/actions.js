@@ -21,7 +21,11 @@ export const ActionTypes = keyMirror({
     ZONES_FETCH_FAIL: null,
 
     COLLECTIBLE_UPDATE_COLLECTED_SUCCESS: null,
-    COLLECTIBLE_UPDATE_COLLECTED_FAIL: null
+    COLLECTIBLE_UPDATE_COLLECTED_FAIL: null,
+
+    VIEW_TAB_UPDATED: null,
+    VIEW_COLLECTIBLE_UPDATED: null,
+    VIEW_ZONE_UPDATED: null
 });
 
 // A set of functions that return 'action' objects.
@@ -120,6 +124,18 @@ function fetchAllData() {
 }
 
 
+function updateTabView(index) {
+    return { type: ActionTypes.VIEW_TAB_UPDATED, index };
+}
+
+function updateZoneView(index) {
+    return { type: ActionTypes.VIEW_ZONE_UPDATED, index };
+}
+
+function updateCollectibleView(index) {
+    return { type: ActionTypes.VIEW_COLLECTIBLE_UPDATED, index };
+}
+
 export const ActionCreators = {
     updateActiveZone,
     updateCollectible,
@@ -127,5 +143,8 @@ export const ActionCreators = {
     fetchCategories,
     fetchCollectibles,
     fetchMembership,
-    fetchZones
+    fetchZones,
+    updateCollectibleView,
+    updateTabView,
+    updateZoneView
 };

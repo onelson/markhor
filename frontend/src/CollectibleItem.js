@@ -20,7 +20,6 @@ export default function CollectibleItem(props) {
     return (
         <li className={className}>
             <Checkbox label={props.item.name}
-                      toggle
                       checked={props.item.collected}
                       onChange={() => props.onToggle(props.item)}/>
         </li>);
