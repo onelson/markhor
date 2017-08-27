@@ -18,7 +18,7 @@ CollectibleList.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        activeZone: state.activeZone,
+        activeZone: state.selection.zone,
         dataLoadComplete: state.dataLoadComplete,
         collectibles: state.collectibles,
         categories: state.categories,
