@@ -20,13 +20,20 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
+
 mod db;
 mod models;
+
+use std::io;
+use std::path::{Path, PathBuf};
 use std::env;
+use rocket::response::NamedFile;
+
 
 mod schema {
     infer_schema!("dotenv:DATABASE_URL");
 }
+
 
 mod api {
     use rocket_contrib::Json;
@@ -89,6 +96,16 @@ mod api {
     }
 }
 
+#[get("/")]
+fn index() -> io::Result<NamedFile> {
+    NamedFile::open("frontend/build/index.html")
+}
+
+#[get("/<file..>")]
+fn spa_files(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("frontend/build/").join(file)).ok()
+}
+
 fn main() {
     dotenv::dotenv().ok();
     let _ = env_logger::init();
@@ -106,5 +123,6 @@ fn main() {
                 api::update_collectible_collected
             ],
         )
+        .mount("/", routes![spa_files, index])
         .launch();
 }
