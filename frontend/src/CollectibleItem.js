@@ -6,8 +6,7 @@ import Checkbox from 'semantic-ui-react/dist/commonjs/modules/Checkbox';
 
 CollectibleItem.propTypes = {
     activeItems: PropTypes.object.isRequired,
-    item: PropTypes.object.isRequired,
-    onToggle: PropTypes.func.isRequired
+    item: PropTypes.object.isRequired
 };
 
 
@@ -21,8 +20,7 @@ export default function CollectibleItem(props) {
     return (
         <div className={className}>
             <Checkbox label={props.item.name}
-                      checked={props.item.collected}
-                      onChange={() => props.onToggle(props.item)}/>
+                      checked={props.item.collected}/>
             <span>{props.item.shortName && ` (${props.item.shortName})`}</span>
         </div>
         );

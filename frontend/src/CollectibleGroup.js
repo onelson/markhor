@@ -16,11 +16,10 @@ export default function CollectibleGroup(props) {
         items = props.items
             .sortBy(x => [x.shortName, x.name])
             .map(item =>
-                <List.Item key={item.id}>
+                <List.Item key={item.id} onClick={() => props.onItemToggle(item)}>
                     <CollectibleItem
                         activeItems={props.activeItems}
-                        item={item}
-                        onToggle={props.onItemToggle}/>
+                        item={item}/>
                 </List.Item>);
     }
     else {
