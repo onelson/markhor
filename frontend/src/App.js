@@ -58,7 +58,7 @@ class App extends Component {
               // * (bonus) collapse/expand groups
 
               if (state.selection.tab === ZONE_TAB) {
-                  const zone = state.activeZone;
+                  const zone = state.selection.zone;
                   const zoneIds = state.zones.keySeq().toList();
 
                   // bounds check
@@ -78,7 +78,7 @@ class App extends Component {
                   }
 
                   if (nextZone !== undefined) {
-                      store.dispatch(ActionCreators.updateActiveZone(nextZone || null));
+                      store.dispatch(ActionCreators.updateSelectedZone(nextZone || null));
                   }
               }
           }

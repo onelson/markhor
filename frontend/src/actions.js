@@ -4,7 +4,6 @@ export const ActionTypes = keyMirror({
     // This is meant to be used like a set of enums.
     // Define variants like:
     // `KEY: null,`
-    ACTIVE_ZONE_UPDATE: null,
 
     DATA_LOAD_COMPLETE: null,
 
@@ -32,10 +31,6 @@ export const ActionTypes = keyMirror({
 // Actions are objects with a `type` field (using a
 // value from the `ActionTypes` object, and arbitrary additional
 // fields to be used by reducers to perform the requested work.
-
-function updateActiveZone(zoneId) {
-    return { type: ActionTypes.ACTIVE_ZONE_UPDATE, zoneId };
-}
 
 function updateCollectible(collectibleId, value) {
     return (dispatch) => {
@@ -128,8 +123,8 @@ function updateSelectedTab(index) {
     return { type: ActionTypes.SELECTED_TAB_UPDATED, index };
 }
 
-function updateSelectedZone(index) {
-    return { type: ActionTypes.SELECTED_ZONE_UPDATED, index };
+function updateSelectedZone(zoneId) {
+    return { type: ActionTypes.SELECTED_ZONE_UPDATED, zoneId };
 }
 
 // function updateSelectedCollectible(index) {
@@ -137,7 +132,6 @@ function updateSelectedZone(index) {
 // }
 
 export const ActionCreators = {
-    updateActiveZone,
     updateCollectible,
     fetchAllData,
     fetchCategories,

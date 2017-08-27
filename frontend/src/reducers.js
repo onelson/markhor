@@ -4,15 +4,6 @@ import * as Immutable from 'immutable';
 import initialState from './initialState';
 import { ActionTypes } from './actions';
 
-function activeZone(state=initialState.activeZone, action) {
-    switch(action.type) {
-        case ActionTypes.ACTIVE_ZONE_UPDATE:
-            return action.zoneId;
-        default:
-            return state;
-    }
-}
-
 function dataLoadComplete(state=initialState.dataLoadComplete, action) {
     switch(action.type) {
         case ActionTypes.DATA_LOAD_COMPLETE:
@@ -83,9 +74,9 @@ function selection(state=initialState.selection, action) {
     switch(action.type) {
         case ActionTypes.SELECTED_TAB_UPDATED:
             return { ...state, tab: action.index };
-        case ActionTypes.VIEW_ZONE_UPDATED:
-            return { ...state, zone: action.index };
-        case ActionTypes.VIEW_COLLECTIBLE_UPDATED:
+        case ActionTypes.SELECTED_ZONE_UPDATED:
+            return { ...state, zone: action.zoneId };
+        case ActionTypes.SELECTED_COLLECTIBLE_UPDATED:
             return { ...state, collectible: action.index };
         default:
             return state;
@@ -93,7 +84,6 @@ function selection(state=initialState.selection, action) {
 }
 
 export default combineReducers({
-    activeZone,
     dataLoadComplete,
     zones,
     collectibles,

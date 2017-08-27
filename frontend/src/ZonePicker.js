@@ -11,7 +11,7 @@ ZonePicker.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        activeZone: state.activeZone,
+        activeZone: state.selection.zone,
         zones: state.zones
     };
 }
@@ -22,14 +22,14 @@ function ZonePicker(props) {
         .sortBy(i => i.id)
         .map(item => <ZoneItem key={item.id}
                                activeZone={props.activeZone}
-                               onActivate={props.updateActiveZone}
+                               onActivate={props.updateSelectedZone}
                                item={item}/>);
 
     const noneItem = { name: 'None', id: null, description: null };
 
     return (<ul className="zone-picker">
         <ZoneItem activeZone={props.activeZone}
-                  onActivate={props.updateActiveZone}
+                  onActivate={props.updateSelectedZone}
                   item={noneItem}/>
         {listItems}
     </ul>);

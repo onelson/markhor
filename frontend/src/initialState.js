@@ -10,7 +10,6 @@ export default {
         collectible: null,
         zone: null
     },
-    activeZone: null,
     dataLoadComplete: false,
     zones: Immutable.Map(),
     collectibles: Immutable.Map(),
