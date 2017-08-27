@@ -6,8 +6,8 @@ import CollectibleList from './CollectibleList';
 import { ActionCreators } from './actions';
 
 const panes = [
-    { menuItem: 'Items', render: () => <Tab.Pane><CollectibleList/></Tab.Pane> },
-    { menuItem: 'Zones', render: () => <Tab.Pane><ZonePicker/></Tab.Pane> }
+    { menuItem: { key: 'Items', icon: 'list' }, render: () => <Tab.Pane><CollectibleList/></Tab.Pane> },
+    { menuItem: { key: 'Zones', icon: 'map' }, render: () => <Tab.Pane><ZonePicker/></Tab.Pane> }
 ];
 
 function mapStateToProps(state) {
@@ -23,6 +23,7 @@ function Tabs(props) {
     return (
         <Tab activeIndex={props.activeTab}
              onTabChange={handleTabChange}
+             menu={{ borderless: true, attached: false, tabular: false, secondary: true }}
              panes={panes} />
     );
 }

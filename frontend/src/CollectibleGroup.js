@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'semantic-ui-react/dist/commonjs/views/Card';
 import List from 'semantic-ui-react/dist/commonjs/elements/List/List';
 import CollectibleItem from './CollectibleItem';
 
@@ -36,15 +35,11 @@ export default function CollectibleGroup(props) {
         : '?/?');
 
     return (
-        <Card fluid>
-            <Card.Content>
-                <Card.Header>{props.label} ({count})</Card.Header>
-            </Card.Content>
-            <Card.Content >
+        <div className="collectible-group">
+            <h4 className="heading">{props.label} ({count})</h4>
             <List>
                 {items}
             </List>
-            </Card.Content>
-        </Card>
+        </div>
     );
 }

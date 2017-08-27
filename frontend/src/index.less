@@ -1,22 +1,81 @@
 @import '../node_modules/semantic-ui-less/semantic';
+@import 'fonts/doppio';
+
+body {
+  font-family: 'Doppio One', sans-serif;
+  text-transform: uppercase;
+  color: #353428;
+  background: #0e0f0a;
+}
+
+.ui.segment {
+  background: transparent;
+  &.bottom {
+    border: none;
+    padding: 0.3em;
+  }
+
+}
+
+
+@itemBg: #545648;
+@activeItemBg: #aaa990;
+@highlightItemBg: lighten(@itemBg, 10%);
+
+
+.ui.secondary.menu {
+  .icon.item {
+    background-color: @itemBg;
+    &.active {
+      background-color: @activeItemBg;
+    }
+    &:hover {
+      background-color: @highlightItemBg;
+    }
+  }
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
 
 .ui.card .content {
   padding: 0.6em;
 }
 
-.ui.list > .item
+.ui.list > .item {}
 
+
+.collectible-group {
+  border: 2px @activeItemBg solid;
+  margin-bottom: 1em;
+
+
+  .heading {
+    background: @activeItemBg;
+    margin-bottom: 0;
+    padding: 0.25em 0.3em;
+  }
+
+  & > .ui.list {
+    padding: 0.25em;
+    margin: 0;
+  }
+}
 .mk.item {
-
+  display: block;
+  background-color: @itemBg;
   padding: 0.25em 0.1em;
   cursor: pointer;
-
+  &:hover {
+    background: @highlightItemBg;
+  }
   &.active {
-    background: goldenrod;
-    color: whitesmoke;
+    background: @activeItemBg;
   }
 
   &.inactive {
-    opacity: 0.3;
+    opacity: 0.35;
   }
 }
+
+
