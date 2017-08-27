@@ -1,6 +1,7 @@
 @import '../node_modules/semantic-ui-less/semantic';
 @import 'fonts/doppio';
 
+@textColor: #353428;
 @panelBg: #0e0f0a;
 @itemBg: #545648;
 @activeItemBg: #aaa990;
@@ -9,8 +10,8 @@
 body {
   font-family: 'Doppio One', sans-serif;
   text-transform: uppercase;
-  color: #353428;
-  background: #000;
+  color: @textColor;
+  background: @panelBg;
 }
 
 .ui.segment {
