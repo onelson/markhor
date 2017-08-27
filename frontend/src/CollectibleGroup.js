@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from 'semantic-ui-react/dist/commonjs/views/Card';
+import List from 'semantic-ui-react/dist/commonjs/elements/List/List';
 import CollectibleItem from './CollectibleItem';
+
 
 
 CollectibleGroup.propTypes = {
@@ -11,20 +14,18 @@ CollectibleGroup.propTypes = {
 };
 
 
-// TODO: add local state to control collapsed state.
 export default function CollectibleGroup(props) {
-
     let items = null;
-
     if (props.items) {
         items = props.items
             .sortBy(x => x.name)
             .map(item =>
-                <CollectibleItem
-                    key={item.id}
-                    activeItems={props.activeItems}
-                    item={item}
-                    onToggle={props.onItemToggle}/>);
+                <List.Item key={item.id}>
+                    <CollectibleItem
+                        activeItems={props.activeItems}
+                        item={item}
+                        onToggle={props.onItemToggle}/>
+                </List.Item>);
     }
     else {
         console.warn(`Group has no items: ${props.label}`);
@@ -35,11 +36,15 @@ export default function CollectibleGroup(props) {
         : '?/?');
 
     return (
-        <div>
-            <h4>{props.label} ({count})</h4>
-            <ul className="collectible-list">
+        <Card fluid>
+            <Card.Content>
+                <Card.Header>{props.label} ({count})</Card.Header>
+            </Card.Content>
+            <Card.Content >
+            <List>
                 {items}
-            </ul>
-        </div>
+            </List>
+            </Card.Content>
+        </Card>
     );
 }

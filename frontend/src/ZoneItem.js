@@ -10,16 +10,17 @@ ZoneItem.propTypes = {
 
 function ZoneItem(props) {
     const className = classNames(
-        "item",
+        'mk',
+        'item',
         { active: props.activeZone === props.item.id }
     );
 
     const handleClick = () => props.onActivate(props.item.id);
 
     return (
-        <li className={className} onClick={handleClick}>
+        <div className={className} onClick={handleClick}>
             {props.item.name}
-        </li>
+        </div>
     );
 }
 

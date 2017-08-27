@@ -13,15 +13,16 @@ CollectibleItem.propTypes = {
 
 export default function CollectibleItem(props) {
     const className = classNames(
+        'mk',
         'item',
         { inactive: !props.activeItems.includes(props.item.id)}
     );
 
     return (
-        <li className={className}>
-            <Checkbox label={props.item.name}
-                      checked={props.item.collected}
-                      onChange={() => props.onToggle(props.item)}/>
-        </li>);
+        <Checkbox label={props.item.name}
+                  className={className}
+                  checked={props.item.collected}
+                  onChange={() => props.onToggle(props.item)}/>
+        );
 
 }

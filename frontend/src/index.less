@@ -1,38 +1,22 @@
 @import '../node_modules/semantic-ui-less/semantic';
 
-body {
-  font-size: 24px;
-  background-color: lightseagreen;
-  user-select: none;
+.ui.card .content {
+  padding: 0.6em;
 }
 
-.collectible-list,
-.zone-picker {
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem;
-}
+.ui.list > .item
 
-.item {
+.mk.item {
+
+  padding: 0.25em 0.1em;
   cursor: pointer;
-}
 
-.item.active {
-  background: goldenrod;
-  color: whitesmoke;
-}
+  &.active {
+    background: goldenrod;
+    color: whitesmoke;
+  }
 
-.item.inactive {
-  opacity: 0.3;
-}
-
-.app {
-  display: flex;
-}
-
-.collectibles h4 {
-  margin: 0.5rem 0.25rem 0;
-  padding: 0.1rem;
-  background: darkslateblue;
-  color: azure;
+  &.inactive {
+    opacity: 0.3;
+  }
 }
