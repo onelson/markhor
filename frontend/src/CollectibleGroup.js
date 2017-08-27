@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import List from 'semantic-ui-react/dist/commonjs/elements/List/List';
 import CollectibleItem from './CollectibleItem';
 
-
-
 CollectibleGroup.propTypes = {
     activeItems: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
@@ -12,12 +10,11 @@ CollectibleGroup.propTypes = {
     onItemToggle: PropTypes.func.isRequired
 };
 
-
 export default function CollectibleGroup(props) {
     let items = null;
     if (props.items) {
         items = props.items
-            .sortBy(x => x.name)
+            .sortBy(x => [x.shortName, x.name])
             .map(item =>
                 <List.Item key={item.id}>
                     <CollectibleItem

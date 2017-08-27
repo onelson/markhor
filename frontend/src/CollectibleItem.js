@@ -19,10 +19,12 @@ export default function CollectibleItem(props) {
     );
 
     return (
-        <Checkbox label={props.item.name}
-                  className={className}
-                  checked={props.item.collected}
-                  onChange={() => props.onToggle(props.item)}/>
+        <div className={className}>
+            <Checkbox label={props.item.name}
+                      checked={props.item.collected}
+                      onChange={() => props.onToggle(props.item)}/>
+            <span>{props.item.shortName && ` (${props.item.shortName})`}</span>
+        </div>
         );
 
 }
