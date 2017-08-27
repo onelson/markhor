@@ -1,11 +1,16 @@
 @import '../node_modules/semantic-ui-less/semantic';
 @import 'fonts/doppio';
 
+@panelBg: #0e0f0a;
+@itemBg: #545648;
+@activeItemBg: #aaa990;
+@highlightItemBg: lighten(@itemBg, 10%);
+
 body {
   font-family: 'Doppio One', sans-serif;
   text-transform: uppercase;
   color: #353428;
-  background: #0e0f0a;
+  background: #000;
 }
 
 .ui.segment {
@@ -13,17 +18,13 @@ body {
   &.bottom {
     border: none;
     padding: 0.3em;
+    background: @panelBg;
   }
 
 }
 
-
-@itemBg: #545648;
-@activeItemBg: #aaa990;
-@highlightItemBg: lighten(@itemBg, 10%);
-
-
 .ui.secondary.menu {
+  background: @panelBg;
   .icon.item {
     background-color: @itemBg;
     &.active {
@@ -33,22 +34,17 @@ body {
       background-color: @highlightItemBg;
     }
   }
+
   margin: 0;
   padding: 0;
   border-bottom: none;
 }
 
-.ui.card .content {
-  padding: 0.6em;
-}
-
-.ui.list > .item {}
-
 
 .collectible-group {
+  background: @panelBg;
   border: 2px @activeItemBg solid;
   margin-bottom: 1em;
-
 
   .heading {
     background: @activeItemBg;
@@ -61,6 +57,7 @@ body {
     margin: 0;
   }
 }
+
 .mk.item {
   display: block;
   background-color: @itemBg;
@@ -77,5 +74,3 @@ body {
     opacity: 0.35;
   }
 }
-
-

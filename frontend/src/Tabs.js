@@ -6,7 +6,7 @@ import CollectibleList from './CollectibleList';
 import { ActionCreators } from './actions';
 
 const panes = [
-    { menuItem: { key: 'Items', icon: 'list' }, render: () => <Tab.Pane><CollectibleList/></Tab.Pane> },
+    { menuItem: { key: 'Items', icon: 'list layout' }, render: () => <Tab.Pane><CollectibleList/></Tab.Pane> },
     { menuItem: { key: 'Zones', icon: 'map' }, render: () => <Tab.Pane><ZonePicker/></Tab.Pane> }
 ];
 
