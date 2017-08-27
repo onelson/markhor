@@ -39,7 +39,8 @@ function CollectibleList(props) {
         activeItems = props.collectibles.keySeq();
     }
     else {
-        activeItems = props.membership.itemsByZone.get(props.activeZone) || Immutable.List();
+        activeItems = props.membership
+            .itemsByZone.get(props.activeZone) || Immutable.List();
     }
 
     const itemsByCategory = props.collectibles
@@ -54,8 +55,12 @@ function CollectibleList(props) {
         .valueSeq()
         .map(category => [category, itemsByCategory.get(category.id)])
         .sortBy(([ category, items ]) => {
-
-            return [ !items.some(x => !x.collected), category.name ];
+            return [
+                !activeItems.some(x => {
+                    const item = items.find(y => y.id === x);
+                    return item && !item.collected;
+                }),
+                category.name ];
         })
         .map(([ category, items ]) =>
             <CollectibleGroup
