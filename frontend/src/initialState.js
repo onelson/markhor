@@ -5,7 +5,7 @@ import * as Immutable from 'immutable';
 // convenient place to set defaults, but it also shows us the
 // general layout of the data.
 export default {
-    view: {
+    selection: {
         tab: 0,
         collectible: null,
         zone: null

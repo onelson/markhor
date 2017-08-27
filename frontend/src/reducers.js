@@ -71,17 +71,17 @@ function membership(state=initialState.membership, action) {
 function zones(state=initialState.zones, action) {
     switch (action.type) {
         case ActionTypes.ZONES_FETCH_SUCCESS:
-            return Immutable.Map(action.data.map(x => [x.id, x]));
+            return Immutable.OrderedMap(action.data.map(x => [x.id, x]));
         case ActionTypes.ZONES_FETCH_FAIL:
-            return Immutable.Map();
+            return Immutable.OrderedMap();
         default:
             return state;
     }
 }
 
-function view(state=initialState.view, action) {
+function selection(state=initialState.selection, action) {
     switch(action.type) {
-        case ActionTypes.VIEW_TAB_UPDATED:
+        case ActionTypes.SELECTED_TAB_UPDATED:
             return { ...state, tab: action.index };
         case ActionTypes.VIEW_ZONE_UPDATED:
             return { ...state, zone: action.index };
@@ -99,5 +99,5 @@ export default combineReducers({
     collectibles,
     membership,
     categories,
-    view
+    selection
 });

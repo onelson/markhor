@@ -11,13 +11,13 @@ const panes = [
 ];
 
 function mapStateToProps(state) {
-    return { activeTab: state.view.tab };
+    return { activeTab: state.selection.tab };
 }
 
 function Tabs(props) {
 
     const handleTabChange = (event, data) => {
-        props.updateTabView(data.activeIndex);
+        props.updateSelectedTab(data.activeIndex);
     };
 
     return (
