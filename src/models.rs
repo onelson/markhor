@@ -1,3 +1,5 @@
+use serde::Serialize;
+
 #[derive(Debug, Serialize, Queryable)]
 #[serde(rename_all = "camelCase")]
 pub struct Zone {
