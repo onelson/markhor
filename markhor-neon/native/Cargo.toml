@@ -5,6 +5,7 @@ authors = ["Owen Nelson <onelson@gmail.com>"]
 license = "MIT"
 build = "build.rs"
 exclude = ["artifacts.json", "index.node"]
+edition = "2018"
 
 [lib]
 name = "markhor_neon"
@@ -15,3 +16,4 @@ neon-build = "0.3.3"
 
 [dependencies]
 neon = "0.3.3"
+markhor = { path = "../../" }

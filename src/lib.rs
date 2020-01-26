@@ -19,8 +19,8 @@ pub fn get_conn(database_url: &str) -> Conn {
 
 embed_migrations!("./migrations");
 
-pub fn init_db(conn: Conn) -> Result<(), RunMigrationsError> {
-    embedded_migrations::run(&conn)
+pub fn init_db(conn: &Conn) -> Result<(), RunMigrationsError> {
+    embedded_migrations::run(conn)
 }
 
 pub fn get_zones(conn: &Conn) -> QueryResult<Vec<models::Zone>> {
