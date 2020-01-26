@@ -1,8 +1,11 @@
 #[macro_use]
 extern crate diesel;
+#[macro_use]
+extern crate diesel_migrations;
 use diesel::prelude::*;
 use diesel::result::QueryResult;
 use diesel::sqlite::SqliteConnection;
+use diesel_migrations::RunMigrationsError;
 
 mod models;
 mod schema;
@@ -12,6 +15,12 @@ pub type Conn = SqliteConnection;
 #[allow(dead_code)]
 pub fn get_conn(database_url: &str) -> Conn {
     Conn::establish(database_url).unwrap()
+}
+
+embed_migrations!("./migrations");
+
+pub fn init_db(conn: Conn) -> Result<(), RunMigrationsError> {
+    embedded_migrations::run(&conn)
 }
 
 pub fn get_zones(conn: &Conn) -> QueryResult<Vec<models::Zone>> {
