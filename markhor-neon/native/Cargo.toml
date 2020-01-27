@@ -16,4 +16,6 @@ neon-build = "0.3.3"
 
 [dependencies]
 neon = "0.3.3"
+neon-serde = "0.3.0"
+serde = { version = "1.0", features = ["derive"] }
 markhor = { path = "../../" }

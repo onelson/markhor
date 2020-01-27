@@ -1,3 +1,5 @@
 var addon = require('../native');
 
-console.log(addon.hello());
+module.exports = {
+    MarkhorDB: addon.MarkhorDB
+};

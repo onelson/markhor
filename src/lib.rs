@@ -7,7 +7,7 @@ use diesel::result::QueryResult;
 use diesel::sqlite::SqliteConnection;
 use diesel_migrations::RunMigrationsError;
 
-mod models;
+pub mod models;
 mod schema;
 
 pub type Conn = SqliteConnection;
@@ -46,9 +46,9 @@ pub fn get_memberships(conn: &Conn) -> QueryResult<Vec<models::CollectibleZoneMe
 }
 
 pub fn update_collectible_collected(
+    conn: &Conn,
     id_: i32,
     collected_: bool,
-    conn: &Conn,
 ) -> QueryResult<models::Collectible> {
     use schema::collectibles::dsl::*;
 
