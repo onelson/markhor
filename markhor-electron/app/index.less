@@ -1,0 +1,86 @@
+@import '../node_modules/semantic-ui-less/semantic';
+@import 'fonts/doppio';
+
+@textColor: #353428;
+@panelBg: #0e0f0a;
+@itemBg: #545648;
+@activeItemBg: #aaa990;
+@highlightItemBg: lighten(@itemBg, 10%);
+
+body {
+  font-family: 'Doppio One', sans-serif;
+  text-transform: uppercase;
+  color: @textColor;
+  background: @panelBg;
+}
+
+.ui.segment {
+  background: transparent;
+  &.bottom {
+    border: none;
+    padding: 0.3em;
+    background: @panelBg;
+  }
+
+}
+
+.ui.secondary.menu {
+  background: @panelBg;
+  .icon.item {
+    background-color: @itemBg;
+    &.active {
+      background-color: @activeItemBg;
+    }
+    &:hover {
+      background-color: @highlightItemBg;
+    }
+  }
+
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+
+.collectible-group {
+  background: @panelBg;
+  border: 2px @activeItemBg solid;
+  margin-bottom: 1em;
+
+  .heading {
+    background: @activeItemBg;
+    margin-bottom: 0;
+    padding: 0.25em 0.3em;
+  }
+
+  & > .ui.list {
+    padding: 0.25em;
+    margin: 0;
+  }
+}
+
+.mk.item {
+  display: block;
+  background-color: @itemBg;
+  padding: 0.25em 0.1em;
+  cursor: pointer;
+  &:hover {
+    background: @highlightItemBg;
+  }
+  &.active {
+    background: @activeItemBg;
+  }
+
+  &.inactive {
+    opacity: 0.35;
+  }
+}
+
+
+.ui.label.total-count {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  background: @activeItemBg;
+  padding: 0.5em;
+}
