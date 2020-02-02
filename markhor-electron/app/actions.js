@@ -1,10 +1,8 @@
 import keyMirror from 'keymirror';
 
-import path from 'path';
-import os from 'os';
+import { remote } from 'electron';
 
-import { MarkhorDB } from 'markhor-neon';
-export const markhorDB = new MarkhorDB(path.resolve(os.homedir(), ".markhordb.sqlite"));
+const { markhorDB } = remote.require('../db');
 
 export const ActionTypes = keyMirror({
     // This is meant to be used like a set of enums.
