@@ -1,5 +1,7 @@
 use yew::prelude::*;
 
+mod db;
+
 #[function_component]
 fn App() -> Html {
     let counter = use_state(|| 0);
