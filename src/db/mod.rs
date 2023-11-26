@@ -1,7 +1,7 @@
-use crate::db::categories::Category;
-use crate::db::zones::Zone;
+pub use crate::db::categories::Category;
+pub use crate::db::zones::Zone;
 use collectible_zone_membership::CollectibleZoneMembership;
-use collectibles::Collectible;
+pub use collectibles::Collectible;
 
 mod categories;
 mod collectible_zone_membership;
@@ -44,13 +44,9 @@ impl<'a> Database<'a> {
         &self,
         category_id: usize,
     ) -> impl Iterator<Item = &Collectible> {
-        self.collectibles.iter().filter_map(move |x| {
-            if x.category_id != category_id {
-                None
-            } else {
-                Some(x)
-            }
-        })
+        self.collectibles
+            .iter()
+            .filter(move |x| x.category_id != category_id)
     }
 
     pub fn collectible_by_id(&self, id: usize) -> &Collectible {

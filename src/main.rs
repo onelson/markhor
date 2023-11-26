@@ -1,23 +1,16 @@
+use components::zone_picker::ZonePicker;
 use yew::prelude::*;
-
+mod components;
 mod db;
 
 #[function_component]
 fn App() -> Html {
-    let counter = use_state(|| 0);
-    let onclick = {
-        let counter = counter.clone();
-        move |_| {
-            let value = *counter + 1;
-            counter.set(value);
-        }
-    };
-
+    let zones = use_memo((), |_| {
+        let data = db::Database::default();
+        data.zones().copied().collect::<Vec<_>>()
+    });
     html! {
-        <div>
-            <button {onclick}>{ "+1" }</button>
-            <p>{ *counter }</p>
-        </div>
+        <ZonePicker zones={zones} active_zone={None}/>
     }
 }
 
