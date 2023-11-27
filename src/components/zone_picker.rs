@@ -14,11 +14,10 @@ pub fn ZonePicker(props: &Props) -> Html {
     let items = props
         .zones
         .iter()
-        .copied()
         .map(|zone| {
             html! {
-                <li ~key={zone.id}>
-                <Item active_zone={props.active_zone} item={zone}/>
+                <li key={zone.id}>
+                <Item active_zone={props.active_zone} item={*zone}/>
                 </li>
             }
         })
