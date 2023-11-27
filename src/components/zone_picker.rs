@@ -1,18 +1,16 @@
 use crate::db::Zone;
-use std::rc::Rc;
 use yew::prelude::*;
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
     pub active_zone: Option<usize>,
-    pub zones: Rc<Vec<Zone>>,
 }
 
+// FIXME: original has a "none" item in the list to restore the collectibles to being unfiltered
 #[function_component]
 pub fn ZonePicker(props: &Props) -> Html {
-    // FIXME: original has a "none" item in the list to restore the collectibles to being unfiltered
-    let items = props
-        .zones
+    let zones = use_memo((), |_| crate::DATABASE.zones().copied().collect::<Vec<_>>());
+    let items = zones
         .iter()
         .map(|zone| {
             html! {
