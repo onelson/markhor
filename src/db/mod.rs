@@ -82,11 +82,11 @@ impl<'a> Database<'a> {
 
 impl<'a> Default for Database<'a> {
     fn default() -> Self {
-        Self {
-            categories: &categories::DATA,
-            collectibles: &collectibles::DATA,
-            membership: &collectible_zone_membership::DATA,
-            zones: &zones::DATA,
-        }
+        Self::new(
+            &categories::DATA,
+            &collectibles::DATA,
+            &collectible_zone_membership::DATA,
+            &zones::DATA,
+        )
     }
 }
