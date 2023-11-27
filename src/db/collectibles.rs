@@ -1,4 +1,4 @@
-// id, short_name, name, description, category, collected
+#[derive(Copy, Clone, PartialEq)]
 pub struct Collectible {
     pub id: usize,
     pub short_name: Option<&'static str>,

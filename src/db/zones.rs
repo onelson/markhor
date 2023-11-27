@@ -1,3 +1,4 @@
+#[derive(Copy, Clone, PartialEq)]
 pub struct Zone {
     pub id: usize,
     pub name: &'static str,
