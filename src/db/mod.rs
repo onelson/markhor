@@ -16,17 +16,12 @@ pub struct Database<'a> {
 }
 
 impl<'a> Database<'a> {
-    pub fn new(
-        categories: &'a [Category],
-        collectibles: &'a [Collectible],
-        membership: &'a [CollectibleZoneMembership],
-        zones: &'a [Zone],
-    ) -> Self {
+    pub const fn new() -> Self {
         Self {
-            categories,
-            collectibles,
-            membership,
-            zones,
+            categories: &categories::DATA,
+            collectibles: &collectibles::DATA,
+            membership: &collectible_zone_membership::DATA,
+            zones: &zones::DATA,
         }
     }
 
@@ -77,16 +72,5 @@ impl<'a> Database<'a> {
 
     pub fn zones(&self) -> impl Iterator<Item = &Zone> {
         self.zones.iter()
-    }
-}
-
-impl<'a> Default for Database<'a> {
-    fn default() -> Self {
-        Self::new(
-            &categories::DATA,
-            &collectibles::DATA,
-            &collectible_zone_membership::DATA,
-            &zones::DATA,
-        )
     }
 }

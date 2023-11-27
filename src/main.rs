@@ -3,14 +3,12 @@ use yew::prelude::*;
 mod components;
 mod db;
 
+const DATABASE: db::Database = db::Database::new();
+
 #[function_component]
 fn App() -> Html {
-    let zones = use_memo((), |_| {
-        let data = db::Database::default();
-        data.zones().copied().collect::<Vec<_>>()
-    });
     html! {
-        <ZonePicker zones={zones} active_zone={None}/>
+        <ZonePicker active_zone={None}/>
     }
 }
 
