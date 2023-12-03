@@ -41,7 +41,7 @@ impl<'a> Database<'a> {
     ) -> impl Iterator<Item = &Collectible> {
         self.collectibles
             .iter()
-            .filter(move |x| x.category_id != category_id)
+            .filter(move |x| x.category_id == category_id)
     }
 
     pub fn collectible_by_id(&self, id: usize) -> &Collectible {
@@ -52,10 +52,10 @@ impl<'a> Database<'a> {
 
     pub fn collectibles_by_zone(&self, zone_id: usize) -> impl Iterator<Item = &Collectible> {
         self.membership.iter().filter_map(move |x| {
-            if x.zone_id != zone_id {
-                None
-            } else {
+            if x.zone_id == zone_id {
                 Some(self.collectible_by_id(x.collectible_id))
+            } else {
+                None
             }
         })
     }
