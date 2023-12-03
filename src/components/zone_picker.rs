@@ -1,4 +1,5 @@
 use crate::db::Zone;
+use crate::store::{Action, StoreContext};
 use yew::prelude::*;
 
 #[derive(PartialEq, Properties)]
@@ -15,34 +16,41 @@ pub fn ZonePicker(props: &Props) -> Html {
         .map(|zone| {
             html! {
                 <li key={zone.id}>
-                <Item active_zone={props.active_zone} item={*zone}/>
+                <Item active_zone={props.active_zone} label={zone.name} zone_id={zone.id}/>
                 </li>
             }
         })
         .collect::<Html>();
 
     html! {
-        <ul>{items}</ul>
+        <ul>
+        <li><Item active_zone={props.active_zone} label={"None"} zone_id={None} /></li>
+        {items}
+        </ul>
     }
 }
 
 #[derive(PartialEq, Properties)]
 pub struct ItemProps {
     active_zone: Option<usize>,
-    item: Zone,
+    label: &'static str,
+    zone_id: Option<usize>,
 }
 
 #[function_component]
 pub fn Item(props: &ItemProps) -> Html {
-    let active = if Some(props.item.id) == props.active_zone {
-        "active"
-    } else {
-        ""
+    let store = use_context::<StoreContext>().expect("Store ctx");
+    let active = props.zone_id == props.active_zone;
+
+    let onclick = {
+        let store = store.clone();
+        let id = props.zone_id;
+        Callback::from(move |_| store.dispatch(Action::SetZone(id)))
     };
 
     html! {
-        <div class={classes!("mk", "item", active)}>
-            {props.item.name}
+        <div class={classes!("mk", "item", if active {"active"} else {""})}>
+            <label onclick={onclick}><input type="radio" name="active-zone" checked={active}/>{props.label}</label>
         </div>
     }
 }
