@@ -1,4 +1,5 @@
 use crate::store::StoreContext;
+use components::collectible_list::CollectibleList;
 use components::zone_picker::ZonePicker;
 use store::Store;
 use yew::prelude::*;
@@ -15,6 +16,7 @@ fn App() -> Html {
 
     html! {
         <ContextProvider<StoreContext> context={store.clone()}>
+            <CollectibleList/>
             <ZonePicker active_zone={store.active_zone}/>
         </ContextProvider<StoreContext>>
     }
