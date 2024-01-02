@@ -82,7 +82,9 @@ pub fn CollectibleGroup(props: &CollectibleGroupProps) -> Html {
     html! {
         <div class="collectible-group">
             <h4 class="heading">{props.label}{" "}{counts}</h4>
-            <ul>{items}</ul>
+            <ul class="list">
+                {items}
+            </ul>
         </div>
     }
 }
