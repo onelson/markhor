@@ -14,6 +14,15 @@ pub struct Store {
     pub collected: BTreeSet<usize>,
 }
 
+impl From<&BTreeSet<usize>> for Store {
+    fn from(value: &BTreeSet<usize>) -> Self {
+        Self {
+            active_zone: None,
+            collected: value.clone(),
+        }
+    }
+}
+
 impl Reducible for Store {
     type Action = Action;
 
