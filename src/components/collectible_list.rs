@@ -18,18 +18,37 @@ pub fn CollectibleList() -> Html {
             .collect::<BTreeSet<_>>(),
     });
 
-    let groups = crate::DATABASE
+    let mut groups = crate::DATABASE
         .categories()
         .map(|cat| {
             let items = crate::DATABASE
                 .collectibles_by_category(cat.id)
                 .copied()
                 .collect::<Vec<_>>();
+
+            (cat.name, items)
+        })
+        .collect::<Vec<_>>();
+
+    // Ordering the groups by name, but more importantly by "if any of the active items are not yet collected."
+    // N.b. the first field in the key looks backwards, but remember `false` sorts **lower** than `true` so `false`
+    // gives a higher priority!
+    groups.sort_by_key(|x| {
+        (
+            !x.1.iter()
+                .any(|i| active_items.contains(&i.id) && !store.collected.contains(&i.id)),
+            x.0,
+        )
+    });
+
+    let groups = groups
+        .into_iter()
+        .map(|(cat_name, items)| {
             html! {
                 <CollectibleGroup
-                    key={cat.name}
+                    key={cat_name}
                     active_items={active_items.clone()}
-                    label={cat.name}
+                    label={cat_name}
                     {items}/>
             }
         })
@@ -51,7 +70,6 @@ pub struct CollectibleGroupProps {
 pub fn CollectibleGroup(props: &CollectibleGroupProps) -> Html {
     let store = use_context::<StoreContext>().expect("Store ctx");
 
-    // FIXME: memo?
     let collected_in_group: BTreeSet<usize> = {
         let item_ids = props
             .items
@@ -65,7 +83,7 @@ pub fn CollectibleGroup(props: &CollectibleGroupProps) -> Html {
     let collected_count = collected_in_group.len();
     let total_count = props.items.len();
     let counts = format!("({collected_count}/{total_count})");
-    // FIXME: sort by (short name, name) if needed
+
     let items = props
         .items
         .iter()
