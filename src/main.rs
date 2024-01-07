@@ -32,12 +32,15 @@ fn App() -> Html {
 
     let collected_count = store.collected.len();
     let total_count = use_memo((), |_| DATABASE.collectibles().count());
-    let counts = format!("({collected_count}/{total_count})");
+    let counts = format!("Progress: ({collected_count}/{total_count})");
 
     html! {
         <ContextProvider<StoreContext> context={store.clone()}>
-            <ZonePicker active_zone={store.active_zone}/>
-            <div class="total-count">{counts}</div>
+            <div class="topbar">
+                <div class="label">{"Filter by Zone:"}</div>
+                <ZonePicker active_zone={store.active_zone}/>
+                <div class="label">{counts}</div>
+            </div>
             <CollectibleList/>
         </ContextProvider<StoreContext>>
     }
