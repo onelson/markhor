@@ -27,30 +27,39 @@ body {
   text-transform: uppercase;
   color: $textColor;
   background: $panelBg;
-}
-
-.menu {
-  background: $panelBg;
-  .icon.item {
-    background-color: $itemBg;
-    &.active {
-      background-color: $activeItemBg;
-    }
-    &:hover {
-      background-color: $highlightItemBg;
-    }
-  }
-
   margin: 0;
-  padding: 0;
-  border-bottom: none;
 }
 
+.topbar {
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 
+  background: $activeItemBg;
+  width: 100%;
+  padding: 0.25rem;
+
+  .zone-picker {
+    select {
+      padding: 0.25rem;
+      margin-top: 3px;
+    }
+    flex-grow: 4;
+  }
+  .label {
+    top: 3px;
+    background: $activeItemBg;
+    padding: 0.5em;
+  }
+}
+
+.collectibles {
+  padding-top: 3rem;
+}
 .collectible-group {
   background: $panelBg;
   border: 2px $activeItemBg solid;
-  margin-bottom: 1em;
 
   .heading {
     background: $activeItemBg;
@@ -82,13 +91,4 @@ body {
       padding: 0.25em 0.1em;
     }
   }
-}
-
-
-.total-count {
-  position: absolute;
-  right: 0;
-  top: 3px;
-  background: $activeItemBg;
-  padding: 0.5em;
 }

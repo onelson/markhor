@@ -28,10 +28,12 @@ pub fn ZonePicker(props: &Props) -> Html {
         .collect::<Html>();
 
     html! {
-        <select {onchange}>
-            <Item label={"None"} zone_id={None} active_zone={props.active_zone}/>
-            {items}
-        </select>
+        <div class="zone-picker">
+            <select {onchange}>
+                <Item label={"All"} zone_id={None} active_zone={props.active_zone}/>
+                {items}
+            </select>
+        </div>
     }
 }
 
