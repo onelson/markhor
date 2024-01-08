@@ -4,7 +4,7 @@ pub struct CollectibleZoneMembership {
     pub zone_id: usize,
 }
 
-pub const DATA: [CollectibleZoneMembership; 214] = [
+pub const DATA: [CollectibleZoneMembership; 215] = [
     CollectibleZoneMembership {
         collectible_id: 29,
         zone_id: 7,
@@ -700,6 +700,10 @@ pub const DATA: [CollectibleZoneMembership; 214] = [
     CollectibleZoneMembership {
         collectible_id: 26,
         zone_id: 2,
+    },
+    CollectibleZoneMembership {
+        collectible_id: 26,
+        zone_id: 6,
     },
     CollectibleZoneMembership {
         collectible_id: 26,
