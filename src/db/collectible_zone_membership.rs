@@ -643,7 +643,7 @@ pub const DATA: [CollectibleZoneMembership; 216] = [
     },
     CollectibleZoneMembership {
         collectible_id: 17,
-        zone_id: 19,
+        zone_id: 20,
     },
     CollectibleZoneMembership {
         collectible_id: 17,
