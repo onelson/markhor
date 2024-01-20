@@ -25,12 +25,6 @@ impl<'a> Database<'a> {
         }
     }
 
-    pub fn category_by_id(&self, id: usize) -> &Category {
-        // XXX: cheating the lookup. IDs start at 1, so the offset is knowable.
-        debug_assert!(id > 0, "ids start at 1");
-        &self.categories[id - 1]
-    }
-
     pub fn categories(&self) -> impl Iterator<Item = &Category> {
         self.categories.iter()
     }
@@ -62,12 +56,6 @@ impl<'a> Database<'a> {
 
     pub fn collectibles(&self) -> impl Iterator<Item = &Collectible> {
         self.collectibles.iter()
-    }
-
-    pub fn zone_by_id(&self, id: usize) -> &Zone {
-        // XXX: cheating the lookup. IDs start at 1, so the offset is knowable.
-        debug_assert!(id > 0, "ids start at 1");
-        &self.zones[id - 1]
     }
 
     pub fn zones(&self) -> impl Iterator<Item = &Zone> {
