@@ -108,8 +108,8 @@ pub const DATA: [Zone; 40] = [
     },
     Zone {
         id: 21,
-        name: "Graniny Gorky Lab B1 East",
-        description: "The right lower floor of the lab."
+        name: "Graniny Gorky Lab B1",
+        description: "The lower floor of the lab."
     },
     Zone {
         id: 22,

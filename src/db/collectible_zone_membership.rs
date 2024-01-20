@@ -4,7 +4,7 @@ pub struct CollectibleZoneMembership {
     pub zone_id: usize,
 }
 
-pub const DATA: [CollectibleZoneMembership; 214] = [
+pub const DATA: [CollectibleZoneMembership; 216] = [
     CollectibleZoneMembership {
         collectible_id: 29,
         zone_id: 7,
@@ -643,7 +643,7 @@ pub const DATA: [CollectibleZoneMembership; 214] = [
     },
     CollectibleZoneMembership {
         collectible_id: 17,
-        zone_id: 19,
+        zone_id: 20,
     },
     CollectibleZoneMembership {
         collectible_id: 17,
@@ -652,6 +652,10 @@ pub const DATA: [CollectibleZoneMembership; 214] = [
     CollectibleZoneMembership {
         collectible_id: 17,
         zone_id: 26,
+    },
+    CollectibleZoneMembership {
+        collectible_id: 48,
+        zone_id: 1,
     },
     CollectibleZoneMembership {
         collectible_id: 48,
@@ -700,6 +704,10 @@ pub const DATA: [CollectibleZoneMembership; 214] = [
     CollectibleZoneMembership {
         collectible_id: 26,
         zone_id: 2,
+    },
+    CollectibleZoneMembership {
+        collectible_id: 26,
+        zone_id: 6,
     },
     CollectibleZoneMembership {
         collectible_id: 26,
